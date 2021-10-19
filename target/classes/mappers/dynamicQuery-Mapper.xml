@@ -170,6 +170,7 @@
 	
 		- <set>은 단독으로 사용되지 않고<if>, <choose>와 같은 태그들을 내포하여 SQL들을 연결하여 준다.
 		- 앞 뒤에 필요없는 구문(,)을 생략하여 준다.
+		- 비교할때 null 을 먼저 써줘야 에러가 안남.
 	
 	 -->
 	<update id="setEx" parameterType="OrderDto">
@@ -177,27 +178,21 @@
 				T_ORDER_LIST
 	<!-- 		
 		SET
-				<if test='productCode != null and productCode !=""'>
-				PRODUCT_CODE = #{productCode},
-				</if>
 				<if test='productName != null and productName !=""'>
 				PRODUCT_NAME = #{productName},
 				</if>
-				<if test='productPrice != null and productPrice !=""'>
+				<if test='productPrice != 0'>
 				PRODUCT_PRICE = #{productPrice}
 				</if> 
-	-->
+	--> 
 		<set>
-				<if test='productCode != null and productCode !=""'>
-				PRODUCT_CODE = #{productCode},
-				</if>
 				<if test='productName != null and productName !=""'>
 				PRODUCT_NAME = #{productName},
 				</if>
-				<if test='productPrice != null and productPrice !=""'>
+				<if test='productPrice != 0'>
 				PRODUCT_PRICE = #{productPrice}
 				</if>
-		</set>
+		</set> 
 		WHERE
 				PRODUCT_CODE = #{productCode}
 	</update>

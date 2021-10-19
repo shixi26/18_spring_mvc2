@@ -37,6 +37,6 @@ public class DynamicQueryDao {
 		System.out.println();
 	}
 	public void setEx(OrderDto orderDto) {
-		
+		sqlSession.update("dynamicQuery.setEx", orderDto);
 	}
 }

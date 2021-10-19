@@ -86,4 +86,17 @@ public class DynamicQueryController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value="/setEx", method=RequestMethod.GET)
+	public String setEx() {
+		
+		OrderDto orderDto = new OrderDto();
+		orderDto.setProductCode("0x003");
+		orderDto.setProductName("(신제품)장패드");
+		orderDto.setProductPrice(0);
+		
+		dynamicQueryDao.setEx(orderDto);
+		
+		return "home";
+	}
 }
